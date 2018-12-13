@@ -1,0 +1,76 @@
+{
+  "name": "hb-wap-webpack4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server --dev",
+    "build": "rm -fr dist && ./node_modules/.bin/webpack --config build/webpack.prod.conf.js",
+    "test": "rm -fr dist && ./node_modules/.bin/webpack --config build/webpack.test.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alloyfinger": "^0.1.15",
+    "vt-loading": "^1.1.1",
+    "vt-message": "^1.0.2",
+    "vt-toast": "^1.2.1",
+    "vue": "^2.5.17",
+    "vue-http": "^2.0.5",
+    "vue-router": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-function-bind": "^7.2.0",
+    "@babel/plugin-syntax-jsx": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/runtime": "^7.2.0",
+    "add": "^2.0.6",
+    "add-asset-html-webpack-plugin": "^3.1.2",
+    "autoprefixer": "^9.4.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "4.0.1",
+    "babel-runtime": "^6.26.0",
+    "chalk": "^2.4.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-proxy": "^0.9.0",
+    "koa2": "^2.0.0-alpha.7",
+    "mini-css-extract-plugin": "^0.4.5",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-px2rem": "^0.3.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "4.1.0",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.26.1",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-deep-scope-plugin": "^1.6.0",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.1.4",
+    "yarn": "^1.12.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "transform-vue-jsx",
+      "@babel/plugin-transform-runtime",
+      "@babel/plugin-proposal-function-bind",
+      "@babel/plugin-proposal-export-default-from"
+    ]
+  }
+}
