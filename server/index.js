@@ -16,7 +16,7 @@ const config = require(path.resolve('./build/webpack.dev.conf.js'))
 
 const app = new koa2()
 let serverConfig = Object.assign({}, {port: 8080}, config.server)
-let port = Number.parseInt(process.argv[2]) || serverConfig.port
+let port = Number.parseInt(process.argv.pop()) || serverConfig.port
 
 
 config.plugins = config.plugins || []

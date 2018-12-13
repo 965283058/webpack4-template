@@ -4,9 +4,10 @@ const px2rem = require('postcss-px2rem')
 const autoprefixer = require('autoprefixer')
 
 module.exports = {
+    mode: 'development',//开发模式
     entry: {
-        base: ['vue', 'vue-router','vue-http','vt-loading','vue2-filters','vt-toast','vt-message',
-            'alloyfinger','crypto-js','html-entities','core-js','querystring','vue-hot-reload-api','ansi-html','alloyfinger']
+        base: ['vue', 'vue-router','vue-http','alloyfinger',
+            'html-entities','core-js','querystring','vue-hot-reload-api','ansi-html']
     },
     output: {
         path: path.join(__dirname, "dll"),
@@ -14,59 +15,70 @@ module.exports = {
         library: "[name]_library"
     },
     resolve: {
-        extensions: ['', ".js", ".vue", ".css", ".json"],//自动查询的后缀名
+        extensions: [".js", ".vue", ".css", ".json"],//自动查询的后缀名
         alias: {//全局引用快捷变量
             'vue': path.join(process.cwd(), '/node_modules/vue/dist/vue.runtime.common.js')
         }
     },
     module: {
-        loaders: [{
-            test: /\.vue$/,
-            loader: 'vue'
-        }, {
-            test: /\.js$/,
-            loader: 'babel',
-            exclude: /node_modules/,
-        }, {
-            test: /\.css$/,
-            loader: 'style!css?-autoprefixer!postcss'
-        }, {
-            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            loader: 'url',
-            query: {
-                limit: 1,
-                name: 'img/[name].[hash:7].[ext]'
+        rules: [
+            {
+                test: /\.vue$/,
+                use: [{
+                    loader: 'vue-loader'
+                }]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader'
+                }]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'vue-style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                px2rem({remUnit: 75})
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 2048,
+                        name: 'img/[name].[hash:7].[ext]'
+                    }
+                }]
+
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            query: {
+                                limit: 3,
+                                name: 'fonts/[name].[hash:7].[ext]'
+                            }
+                        }
+                    }
+                ]
             }
-        }, {
-            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-            loader: 'url',
-            query: {
-                limit: 1,
-                name: 'fonts/[name].[hash:7].[ext]'
-            }
-        }]
-    },
-    babel: {
-        presets: ['env', 'stage-0'],
-        plugins: [
-            [
-                "diff-platform",
-                {
-                    "platform": "mobile"
-                }
-            ],
-            'transform-vue-jsx',
-            'transform-runtime'
-        ]
-    },
-    vue: {
-        postcss: [
-            autoprefixer({
-                browsers: ["Android >= 3", "iOS >= 7"]
-            }),
-            px2rem({
-                remUnit: 75
-            })
         ]
     },
     plugins: [

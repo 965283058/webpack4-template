@@ -15,7 +15,6 @@ module.exports = merge(webpackBaseConfig, {
         filename: 'js/[name].[chunkhash:7].js',
         chunkFilename: 'js/[name].[chunkhash:7].js',
         publicPath: '/',
-        // publicPath:'https://static.houbank.com/hb-wap/',
     },
     optimization: {
         splitChunks: {//把JS中公共代码抽离出来
@@ -55,8 +54,6 @@ module.exports = merge(webpackBaseConfig, {
                 NODE_ENV: '"production"',
                 API_ROOT: '"/webapi"',
                 ROUTER_ROOT: '"/"',
-                SENSORS_SERVER: '""',//神策埋点后端服务器地址
-                SENSORS: '"https://hbdata.houbank.com/sa?project=production"',//神策埋点服务器地址
             }
         }),
         new CopyWebpackPlugin([{

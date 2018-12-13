@@ -6,8 +6,6 @@ Vue.use(Router)
 
 let router, notFound
 
-let inHBApp = (navigator.userAgent.toLowerCase().indexOf("houbank-") > -1)
-
 
 
 router = new Router({
@@ -24,9 +22,7 @@ router = new Router({
 router.beforeEach(({matched}, from, next) => {
     matched.filter(({meta}) => meta.title).map(({meta}) => {
             document.title = meta.title
-            if (inHBApp) {
-                Vue.setTitle(meta.title)
-            }
+
         })
     next()
 })

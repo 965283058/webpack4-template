@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server --dev",
     "build": "rm -fr dist && ./node_modules/.bin/webpack --config build/webpack.prod.conf.js",
-    "test": "rm -fr dist && ./node_modules/.bin/webpack --config build/webpack.test.conf.js"
+    "test": "rm -fr dist && ./node_modules/.bin/webpack --config build/webpack.test.conf.js",
+    "dll": "rm -rf build/dll&&./node_modules/.bin/webpack --config ./build/webpack.dll.conf.js --display-modules --display-chunks"
   },
   "author": "",
   "license": "ISC",

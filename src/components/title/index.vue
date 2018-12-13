@@ -71,8 +71,7 @@
                 type: Boolean,
                 default: function () {
                     let wxShow = !(/micromessenger/.test(navigator.userAgent.toLowerCase()))
-                    let appShow = navigator.userAgent.toLowerCase().indexOf("houbank-") == -1
-                    return wxShow && appShow
+                    return wxShow
                 }
             },
             white: {

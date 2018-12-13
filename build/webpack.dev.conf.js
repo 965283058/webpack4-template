@@ -15,20 +15,18 @@ module.exports = merge(webpackBaseConfig, {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"develop"',
-                API_ROOT: '"/webapi"',
+                API_ROOT: '"/api"',
                 ROUTER_ROOT: '"/"',
-                SENSORS_SERVER: '"/"',
-                SENSORS: '"https://hbdata.houbank.com/sa?project=default"',
             }
         }),
-        /* new AddAssetHtmlPlugin({
+         new AddAssetHtmlPlugin({
              filepath: path.join(rootDir, 'build/dll', 'base.dll.js'),
              includeSourcemap: false
-         }),*/
-        /*new webpack.DllReferencePlugin({
+         }),
+        new webpack.DllReferencePlugin({
             context: rootDir,
             manifest: require(path.join(rootDir, 'build/dll', 'manifest.json'))
-        })*/
+        })
     ],
     devServer: {
         index:'index.html',
@@ -40,9 +38,8 @@ module.exports = merge(webpackBaseConfig, {
     server: {
         port: 9003, // server port
         proxy: {
-            // host: 'https://m.houbank.com/', // proxy url
-            host: 'http://mrelease05.houbank.net', // proxy url
-            match: /^\/webapi\//   // proxy match regexp
+            host: 'http://m.test.net', // proxy url
+            match: /^\/api\//   // proxy match regexp
         }
     }
 })
